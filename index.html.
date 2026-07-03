@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🗡️ Haken Suit — DIE-Endungen im Deutschen</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Nunito:wght@400;600;700;800&display=swap');
+
+  :root {
+    --rosa: #e91e8c;
+    --rosa-claro: #fce4f3;
+    --morado: #7b2d8b;
+    --dorado: #f0a500;
+    --azul: #1a73e8;
+    --verde: #0f9d58;
+    --rojo: #d93025;
+    --gris: #f5f5f5;
+    --oscuro: #1a1a2e;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    color: #1a1a2e;
+    padding: 20px;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 40px 20px 30px;
+    color: white;
+  }
+  .hero h1 {
+    font-size: 2.8em;
+    font-weight: 800;
+    text-shadow: 0 0 30px rgba(233,30,140,0.8);
+    margin-bottom: 8px;
+  }
+  .hero .subtitle {
+    font-size: 1.1em;
+    color: #fce4f3;
+    opacity: 0.85;
+    margin-bottom: 6px;
+  }
+  .die-badge {
+    display: inline-block;
+    background: var(--rosa);
+    color: white;
+    font-size: 2em;
+    font-weight: 800;
+    padding: 8px 30px;
+    border-radius: 50px;
+    margin: 10px 0;
+    box-shadow: 0 4px 20px rgba(233,30,140,0.5);
+    letter-spacing: 4px;
+  }
+
+  /* CARDS */
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 20px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+
+  .card-title {
+    font-size: 1.4em;
+    font-weight: 800;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* STORY */
+  .story-card {
+    background: linear-gradient(135deg, #fff9f0, #fff0f8);
+    border-left: 6px solid var(--rosa);
+  }
+  .story-text {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.15em;
+    line-height: 1.9;
+    color: #333;
+  }
+  .story-text .ending {
+    font-weight: 600;
+    color: var(--rosa);
+    background: var(--rosa-claro);
+    padding: 1px 6px;
+    border-radius: 6px;
+    font-style: normal;
+  }
+  .story-text .word-de {
+    font-weight: 700;
+    color: var(--morado);
+  }
+  .story-text .word-es {
+    color: var(--verde);
+    font-style: italic;
+  }
+  .story-text .word-en {
+    color: var(--azul);
+    font-style: italic;
+  }
+
+  /* ENDINGS TABLE */
+  .endings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+
+  .ending-block {
+    border-radius: 14px;
+    padding: 16px;
+    border: 2px solid transparent;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: default;
+  }
+  .ending-block:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(233,30,140,0.2);
+  }
+
+  .ending-tag {
+    font-size: 1.6em;
+    font-weight: 800;
+    color: var(--rosa);
+    font-family: 'Crimson Text', serif;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .ending-anchor {
+    font-size: 0.75em;
+    font-weight: 700;
+    color: var(--morado);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .examples-list {
+    list-style: none;
+    font-size: 0.82em;
+    line-height: 1.7;
+  }
+  .examples-list li { display: flex; justify-content: space-between; gap: 6px; flex-wrap: wrap; }
+  .ex-de { font-weight: 700; color: var(--morado); }
+  .ex-es { color: var(--verde); }
+  .ex-en { color: var(--azul); }
+
+  /* Color families */
+  .c1 { background: #fff0f8; border-color: #f8c8e8; }
+  .c2 { background: #f0f4ff; border-color: #c5d4f8; }
+  .c3 { background: #f0fff4; border-color: #b8efc8; }
+  .c4 { background: #fffaf0; border-color: #fde8b0; }
+  .c5 { background: #f5f0ff; border-color: #dcc8f8; }
+
+  /* CATEGORIES */
+  .cat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+  .cat-block {
+    background: var(--gris);
+    border-radius: 14px;
+    padding: 16px;
+    border-top: 4px solid var(--rosa);
+  }
+  .cat-icon { font-size: 2em; display: block; margin-bottom: 6px; }
+  .cat-name { font-weight: 800; font-size: 0.95em; margin-bottom: 8px; color: var(--morado); }
+  .cat-note { font-size: 0.78em; color: #666; margin-bottom: 8px; font-style: italic; }
+  .cat-examples { font-size: 0.82em; line-height: 1.7; }
+  .cat-examples span.de { font-weight: 700; color: var(--rosa); }
+  .cat-examples span.tr { color: #555; }
+
+  /* ACCORDION */
+  details { margin-bottom: 10px; }
+  summary {
+    background: var(--rosa-claro);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--morado);
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  summary::after { content: '▼'; font-size: 0.8em; }
+  details[open] summary::after { content: '▲'; }
+  details[open] summary { border-radius: 10px 10px 0 0; }
+  .details-content {
+    background: white;
+    border: 2px solid var(--rosa-claro);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 16px;
+    font-size: 0.9em;
+    line-height: 1.8;
+  }
+
+  /* QUICK REF */
+  .quick-ref {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .qr-pill {
+    background: var(--rosa);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.85em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+
+  /* MERKWORT */
+  .acronym-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+    flex-wrap: wrap;
+  }
+  .acro-letter {
+    width: 44px; height: 44px;
+    background: var(--rosa);
+    color: white;
+    font-size: 1.4em;
+    font-weight: 800;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .acro-text { flex: 1; min-width: 180px; }
+  .acro-ending { font-weight: 700; color: var(--morado); font-size: 1em; }
+  .acro-example { font-size: 0.82em; color: #555; }
+
+  section { margin-bottom: 20px; }
+
+  h2.section-title {
+    color: white;
+    font-size: 1.3em;
+    font-weight: 800;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 2em; }
+    .endings-grid { grid-template-columns: 1fr; }
+    .cat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="die-badge">DIE</div>
+    <h1>🗡️ Haken Suit</h1>
+    <p class="subtitle">Die komplette Technik, um den femininen Artikel im Deutschen zu merken</p>
+    <p class="subtitle" style="font-size:0.9em; opacity:0.6;">Endungen • Gruppen • Merkgeschichte</p>
+  </div>
+
+  <!-- ====== GESCHICHTE ====== -->
+  <section>
+    <h2 class="section-title">📖 Die Geschichte (laut erzählen)</h2>
+    <div class="card story-card">
+      <div class="card-title" style="color:var(--morado)">🗡️ Der Samurai und sein Haken Suit</div>
+      <p class="story-text">
+        Es war einmal ein Samurai namens <span class="word-de">Die</span>, der in einer Burg voller
+        <span class="ending">-heit</span> lebte. Seine <span class="word-de">Freiheit</span>
+        (<span class="word-es">Unabhängigkeit</span>) war ihm das Wertvollste.
+        Er besaß viel <span class="ending">-keit</span> — seine
+        <span class="word-de">Freundlichkeit</span> (<span class="word-es">Nettigkeit</span>)
+        war im ganzen Königreich berühmt.
+        <br><br>
+        Jeden Morgen wachte er mit einer <span class="ending">-ung</span> auf: Er plante seine
+        perfekte <span class="word-de">Wohnung</span> (<span class="word-es">das Zuhause</span>).
+        Er las seine <span class="word-de">Zeitung</span> (<span class="word-es">das Nachrichtenblatt</span>)
+        und beglich seine <span class="word-de">Rechnung</span> (<span class="word-es">was man zahlt</span>).
+        <br><br>
+        Seine <span class="ending">-schaft</span> war legendär: seine
+        <span class="word-de">Freundschaft</span> (<span class="word-es">enge Bindung</span>)
+        und seine <span class="word-de">Leidenschaft</span> (<span class="word-es">starkes Gefühl</span>)
+        ließen ihn tief schlafen (<em>Schaft = schlafen</em> 💤).
+        <br><br>
+        Eines Tages kam der Samurai zur <span class="ending">-tät</span>: seine
+        <span class="word-de">Universität</span> (<span class="word-es">Hochschule</span>),
+        wo er mit großer <span class="word-de">Qualität</span> (<span class="word-es">Güte</span>) studierte.
+        Dort gab es viel <span class="ending">-tion</span> / <span class="ending">-sion</span>:
+        die <span class="word-de">Information</span>, die <span class="word-de">Nation</span>,
+        die <span class="word-de">Version</span>, die <span class="word-de">Passion</span>.
+        <br><br>
+        Mit <span class="ending">-anz</span> und <span class="ending">-enz</span> schmückte er seinen Anzug:
+        die <span class="word-de">Eleganz</span> (<span class="word-es">Vornehmheit</span>),
+        die <span class="word-de">Toleranz</span> (<span class="word-es">Duldsamkeit</span>),
+        die <span class="word-de">Existenz</span> (<span class="word-es">das Dasein</span>).
+        <br><br>
+        In der <span class="ending">-ei</span> des Dorfes (einer <span class="word-de">Bäckerei</span> 🥐 =
+        <span class="word-es">wo man Brot kauft</span>) kaufte er Brot.
+        Dann ging er in die <span class="word-de">Metzgerei</span> (<span class="word-es">Fleischladen</span>)
+        und in die <span class="word-de">Bücherei</span> (<span class="word-es">Bibliothek</span>).
+        <br><br>
+        Seine Lehrerin, die <span class="ending">-in</span> — die
+        <span class="word-de">Lehrerin</span> (<span class="word-es">weibliche Lehrkraft</span>) —
+        lehrte ihn die <span class="ending">-ik</span>:
+        die <span class="word-de">Musik</span> 🎵 (<span class="word-es">Töne</span>),
+        die <span class="word-de">Physik</span> (<span class="word-es">Naturwissenschaft</span>),
+        die <span class="word-de">Mathematik</span> (<span class="word-es">Zahlenlehre</span>).
+        <br><br>
+        Der Samurai spielte seine <span class="ending">-ur</span>:
+        die <span class="word-de">Gitarre</span> gehörte zur
+        <span class="word-de">Natur</span> (<span class="word-es">Umwelt</span>),
+        zur <span class="word-de">Kultur</span> (<span class="word-es">Traditionen</span>),
+        zur <span class="word-de">Frisur</span> (<span class="word-es">Haarform</span>).
+        <br><br>
+        Er nutzte eine <span class="ending">-ive</span> — eine
+        <span class="word-de">Alternative</span> (<span class="word-es">andere Option</span>)
+        und <span class="word-de">Initiative</span> (<span class="word-es">erster Schritt</span>) —,
+        um seinen Anzug in der <span class="ending">-age</span> zu verstauen:
+        die <span class="word-de">Garage</span> 🚗 (<span class="word-es">fürs Auto</span>),
+        die <span class="word-de">Massage</span> (<span class="word-es">Behandlung</span>).
+        <br><br>
+        Zum Nachtisch nahm er eine <span class="ending">-ade</span>:
+        die <span class="word-de">Limonade</span> 🍋 (<span class="word-es">süßes Getränk</span>)
+        und die <span class="word-de">Marmelade</span> (<span class="word-es">Brotaufstrich</span>).
+        <br><br>
+        Schließlich träumte er mit <span class="ending">-ie</span> von der
+        <span class="word-de">Energie</span> ⚡ (<span class="word-es">Kraft</span>),
+        der <span class="word-de">Demokratie</span> (<span class="word-es">Volksherrschaft</span>)
+        und der <span class="word-de">Philosophie</span> (<span class="word-es">Denklehre</span>).
+        <br><br>
+        Und seine Ukulele 🎸 — <span class="ending">-e am Ende</span> —
+        war seine <span class="word-de">Maschine</span> (<span class="word-es">das Gerät</span>),
+        die <span class="word-de">Küche</span> (<span class="word-es">Kochraum</span>),
+        die <span class="word-de">Brücke</span> (<span class="word-es">Übergang</span>).
+        <br><br>
+        <strong>ENDE! Der Samurai Die schlief mit seinem Haken Suit ein. 🗡️💤</strong>
+      </p>
+    </div>
+  </section>
+
+  <!-- ====== MERKWORT ====== -->
+  <section>
+    <h2 class="section-title">🔑 Merkwort: „HUKE-TASTI“</h2>
+    <div class="card">
+      <p style="margin-bottom:14px; color:#555; font-size:0.9em;">Merke dir alle Endungen mit diesem erfundenen Wort:</p>
+      <div class="acronym-row"><div class="acro-letter">H</div><div class="acro-text"><span class="acro-ending">-HEIT / -KEIT</span><br><span class="acro-example">Freiheit · Freundlichkeit</span></div></div>
+      <div class="acronym-row"><div class="acro-letter">U</div><div class="acro-text"><span class="acro-ending">-UNG</span><br><span class="acro-example">Wohnung · Zeitung</span></div></div>
+      <div class="acronym-row"><div class="acro-letter">K</div><div class="acro-text"><span class="acro-ending">-KEIT (Erinnerung) + -IK</span><br><span class="acro-example">Musik · Physik</span></div></div>
+      <div class="acronym-row"><div class="acro-letter">E</div><div class="acro-text"><span class="acro-ending">-EI / -ERIE / -ENZ / -E (viele)</span><br><span class="acro-example">Bäckerei · Existenz · Brücke</span></div></div>
+      <div class="acronym-row"><div class="acro-letter">T</div><div class="acro-text"><span class="acro-ending">-TÄT / -TION / -TANZ</span><br><span class="acro-example">Universität · Information · Toleranz</span></div></div>
+      <div class="acronym-row"><div class="acro-letter">A</div><div class="acro-text"><span class="acro-ending">-ANZ / -AGE / -ADE</span><br><span class="acro-example">Eleganz · Garage · Limonade</span></div></div>
+      <div class="acronym-row"><div class="acro-letter">S</div><div class="acro-text"><span class="acro-ending">-SCHAFT</span><br><span class="acro-example">Freundschaft · Gesellschaft</span></div></div>
+      <div class="acronym-row"><div class="acro-letter">T</div><div class="acro-text"><span class="acro-ending">-TAT / -TUR / -TIVE / -TION</span><br><span class="acro-example">Natur · Alternative · Initiative</span></div></div>
+      <div class="acronym-row"><div class="acro-letter">I</div><div class="acro-text"><span class="acro-ending">-IE / -IN / -ISSE / -INE / -IVE / -IK</span><br><span class="acro-example">Energie · Lehrerin · Maschine</span></div></div>
+    </div>
+  </section>
+
+  <!-- ====== ENDUNGEN ====== -->
+  <section>
+    <h2 class="section-title">📌 Alle Endungen mit Beispielen</h2>
+    <div class="endings-grid">
+
+      <div class="ending-block c1">
+        <span class="ending-tag">-heit</span>
+        <span class="ending-anchor">💡 Eselsbrücke: klingt wie span. „caliente“</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Freiheit</span><span class="ex-es">Unabhängigkeit</span></li>
+          <li><span class="ex-de">Schönheit</span><span class="ex-es">Attraktivität</span></li>
+          <li><span class="ex-de">Gesundheit</span><span class="ex-es">Wohlbefinden</span></li>
+          <li><span class="ex-de">Wahrheit</span><span class="ex-es">das Wahre</span></li>
+          <li><span class="ex-de">Dummheit</span><span class="ex-es">Torheit</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c2">
+        <span class="ending-tag">-keit</span>
+        <span class="ending-anchor">💡 Eselsbrücke: span. „gato“ → keit</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Freundlichkeit</span><span class="ex-es">Nettigkeit</span></li>
+          <li><span class="ex-de">Möglichkeit</span><span class="ex-es">Chance</span></li>
+          <li><span class="ex-de">Wirklichkeit</span><span class="ex-es">Realität</span></li>
+          <li><span class="ex-de">Einigkeit</span><span class="ex-es">Eintracht</span></li>
+          <li><span class="ex-de">Flüssigkeit</span><span class="ex-es">z. B. Wasser</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c3">
+        <span class="ending-tag">-ung</span>
+        <span class="ending-anchor">💡 sehr häufig — fast immer DIE!</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Wohnung</span><span class="ex-es">das Zuhause</span></li>
+          <li><span class="ex-de">Zeitung</span><span class="ex-es">Nachrichtenblatt</span></li>
+          <li><span class="ex-de">Lösung</span><span class="ex-es">Antwort auf ein Problem</span></li>
+          <li><span class="ex-de">Rechnung</span><span class="ex-es">was man zahlt</span></li>
+          <li><span class="ex-de">Übung</span><span class="ex-es">Training</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c4">
+        <span class="ending-tag">-schaft</span>
+        <span class="ending-anchor">💡 Merke: Schaft = schlafen (aus der Geschichte)</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Freundschaft</span><span class="ex-es">enge Bindung</span></li>
+          <li><span class="ex-de">Gesellschaft</span><span class="ex-es">Gemeinschaft</span></li>
+          <li><span class="ex-de">Leidenschaft</span><span class="ex-es">starkes Gefühl</span></li>
+          <li><span class="ex-de">Botschaft</span><span class="ex-es">Nachricht</span></li>
+          <li><span class="ex-de">Mannschaft</span><span class="ex-es">Team</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c5">
+        <span class="ending-tag">-tät</span>
+        <span class="ending-anchor">💡 = span. „-dad“ / engl. „-ty“</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Universität</span><span class="ex-es">Hochschule</span></li>
+          <li><span class="ex-de">Qualität</span><span class="ex-es">Güte</span></li>
+          <li><span class="ex-de">Realität</span><span class="ex-es">Wirklichkeit</span></li>
+          <li><span class="ex-de">Nationalität</span><span class="ex-es">Staatsangehörigkeit</span></li>
+          <li><span class="ex-de">Kapazität</span><span class="ex-es">Fassungsvermögen</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c1">
+        <span class="ending-tag">-tion / -sion</span>
+        <span class="ending-anchor">💡 = span. „-ción“ / engl. „-tion“</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Information</span><span class="ex-es">Auskunft</span></li>
+          <li><span class="ex-de">Nation</span><span class="ex-es">Land / Volk</span></li>
+          <li><span class="ex-de">Version</span><span class="ex-es">Fassung</span></li>
+          <li><span class="ex-de">Passion</span><span class="ex-es">Leidenschaft</span></li>
+          <li><span class="ex-de">Situation</span><span class="ex-es">Lage</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c2">
+        <span class="ending-tag">-anz / -enz</span>
+        <span class="ending-anchor">💡 = span. „-ancia / -encia“</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Eleganz</span><span class="ex-es">Vornehmheit</span></li>
+          <li><span class="ex-de">Toleranz</span><span class="ex-es">Duldsamkeit</span></li>
+          <li><span class="ex-de">Existenz</span><span class="ex-es">Dasein</span></li>
+          <li><span class="ex-de">Differenz</span><span class="ex-es">Unterschied</span></li>
+          <li><span class="ex-de">Distanz</span><span class="ex-es">Abstand</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c3">
+        <span class="ending-tag">-ei</span>
+        <span class="ending-anchor">💡 Läden & Orte der Herstellung</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Bäckerei</span><span class="ex-es">wo man Brot kauft</span></li>
+          <li><span class="ex-de">Metzgerei</span><span class="ex-es">Fleischladen</span></li>
+          <li><span class="ex-de">Bücherei</span><span class="ex-es">Bibliothek</span></li>
+          <li><span class="ex-de">Partei</span><span class="ex-es">politische Gruppe</span></li>
+          <li><span class="ex-de">Türkei</span><span class="ex-es">Land (Ankara)</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c4">
+        <span class="ending-tag">-in</span>
+        <span class="ending-anchor">💡 weibliche Form von Berufen/Personen</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Lehrerin</span><span class="ex-es">weibliche Lehrkraft</span></li>
+          <li><span class="ex-de">Ärztin</span><span class="ex-es">weibliche Medizinerin</span></li>
+          <li><span class="ex-de">Freundin</span><span class="ex-es">weibliche Freundin</span></li>
+          <li><span class="ex-de">Köchin</span><span class="ex-es">kocht das Essen</span></li>
+          <li><span class="ex-de">Studentin</span><span class="ex-es">weibliche Studierende</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c5">
+        <span class="ending-tag">-ik</span>
+        <span class="ending-anchor">💡 Wissenschaften & Disziplinen</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Musik</span><span class="ex-es">Töne & Melodien</span></li>
+          <li><span class="ex-de">Physik</span><span class="ex-es">Naturwissenschaft</span></li>
+          <li><span class="ex-de">Mathematik</span><span class="ex-es">Rechnen & Zahlen</span></li>
+          <li><span class="ex-de">Klinik</span><span class="ex-es">Krankenhaus</span></li>
+          <li><span class="ex-de">Republik</span><span class="ex-es">Staatsform</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c1">
+        <span class="ending-tag">-ur</span>
+        <span class="ending-anchor">💡 Eselsbrücke: „Ukulele“ → -ur</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Natur</span><span class="ex-es">Pflanzen, Tiere, Umwelt</span></li>
+          <li><span class="ex-de">Kultur</span><span class="ex-es">Kunst & Traditionen</span></li>
+          <li><span class="ex-de">Frisur</span><span class="ex-es">Haarform</span></li>
+          <li><span class="ex-de">Figur</span><span class="ex-es">Gestalt</span></li>
+          <li><span class="ex-de">Struktur</span><span class="ex-es">Aufbau</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c2">
+        <span class="ending-tag">-ie</span>
+        <span class="ending-anchor">💡 = span. „-ía“ / engl. „-y“</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Energie</span><span class="ex-es">Kraft</span></li>
+          <li><span class="ex-de">Demokratie</span><span class="ex-es">Volksherrschaft</span></li>
+          <li><span class="ex-de">Philosophie</span><span class="ex-es">Denklehre</span></li>
+          <li><span class="ex-de">Familie</span><span class="ex-es">Eltern & Kinder</span></li>
+          <li><span class="ex-de">Biologie</span><span class="ex-es">Lehre vom Leben</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c3">
+        <span class="ending-tag">-ive</span>
+        <span class="ending-anchor">💡 = span. „-iva“</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Alternative</span><span class="ex-es">andere Option</span></li>
+          <li><span class="ex-de">Initiative</span><span class="ex-es">erster Schritt</span></li>
+          <li><span class="ex-de">Perspektive</span><span class="ex-es">Blickwinkel</span></li>
+          <li><span class="ex-de">Offensive</span><span class="ex-es">Angriff</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c4">
+        <span class="ending-tag">-age</span>
+        <span class="ending-anchor">💡 Wörter aus dem Französischen</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Garage</span><span class="ex-es">wo das Auto steht</span></li>
+          <li><span class="ex-de">Massage</span><span class="ex-es">Behandlung mit den Händen</span></li>
+          <li><span class="ex-de">Passage</span><span class="ex-es">Durchgang</span></li>
+          <li><span class="ex-de">Etage</span><span class="ex-es">Stockwerk</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c5">
+        <span class="ending-tag">-ade</span>
+        <span class="ending-anchor">💡 = span. „-ada“ / engl. „-ade“</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Limonade</span><span class="ex-es">süßes Getränk</span></li>
+          <li><span class="ex-de">Marmelade</span><span class="ex-es">süßer Brotaufstrich</span></li>
+          <li><span class="ex-de">Fassade</span><span class="ex-es">Vorderseite eines Hauses</span></li>
+          <li><span class="ex-de">Parade</span><span class="ex-es">Umzug / Vorführung</span></li>
+        </ul>
+      </div>
+
+      <div class="ending-block c1">
+        <span class="ending-tag">-isse / -ine</span>
+        <span class="ending-anchor">💡 aus dem Latein/Französischen</span>
+        <ul class="examples-list">
+          <li><span class="ex-de">Kulisse</span><span class="ex-es">Hintergrund (Theater)</span></li>
+          <li><span class="ex-de">Maschine</span><span class="ex-es">Gerät</span></li>
+          <li><span class="ex-de">Disziplin</span><span class="ex-es">Selbstbeherrschung</span></li>
+          <li><span class="ex-de">Medizin</span><span class="ex-es">Heilkunde / Heilmittel</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====== SEMANTISCHE GRUPPEN ====== -->
+  <section>
+    <h2 class="section-title">🗂️ Semantische Gruppen (immer DIE)</h2>
+    <div class="cat-grid">
+
+      <div class="cat-block">
+        <span class="cat-icon">🍌</span>
+        <div class="cat-name">Die meisten Obstsorten</div>
+        <div class="cat-note">Ausnahme: der Apfel, der Pfirsich</div>
+        <div class="cat-examples">
+          <span class="de">die Banane</span> <span class="tr">gelbe, krumme Frucht</span><br>
+          <span class="de">die Orange</span> <span class="tr">Apfelsine</span><br>
+          <span class="de">die Zitrone</span> <span class="tr">saure gelbe Frucht</span><br>
+          <span class="de">die Kirsche</span> <span class="tr">kleine rote Frucht</span><br>
+          <span class="de">die Erdbeere</span> <span class="tr">rote Sommerfrucht</span><br>
+          <span class="de">die Birne</span> <span class="tr">grüne Frucht</span><br>
+          <span class="de">die Mango</span> <span class="tr">tropische Frucht</span>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <span class="cat-icon">🌸</span>
+        <div class="cat-name">Blumen</div>
+        <div class="cat-note">Fast alle sind feminin</div>
+        <div class="cat-examples">
+          <span class="de">die Rose</span> <span class="tr">Blume mit Dornen</span><br>
+          <span class="de">die Tulpe</span> <span class="tr">Frühlingsblume</span><br>
+          <span class="de">die Blume</span> <span class="tr">Oberbegriff</span><br>
+          <span class="de">die Orchidee</span> <span class="tr">edle Zimmerpflanze</span><br>
+          <span class="de">die Sonnenblume</span> <span class="tr">große gelbe Blume</span>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <span class="cat-icon">🚗</span>
+        <div class="cat-name">Automarken</div>
+        <div class="cat-note">wenn = Auto/Motorrad</div>
+        <div class="cat-examples">
+          <span class="de">die BMW</span> <span class="tr">ein Auto</span><br>
+          <span class="de">die Mercedes</span> <span class="tr">ein Auto</span><br>
+          <span class="de">die Harley</span> <span class="tr">ein Motorrad</span><br>
+          <span class="de">die VW</span> <span class="tr">ein Auto</span>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <span class="cat-icon">🌊</span>
+        <div class="cat-name">Deutsche Flüsse</div>
+        <div class="cat-note">Flüsse in Deutschland/Österreich</div>
+        <div class="cat-examples">
+          <span class="de">die Elbe</span> <span class="tr">Fluss durch Hamburg</span><br>
+          <span class="de">die Donau</span> <span class="tr">langer Fluss (Wien)</span><br>
+          <span class="de">die Mosel</span> <span class="tr">Fluss mit Wein</span><br>
+          <span class="de">die Spree</span> <span class="tr">Fluss durch Berlin</span><br>
+          <span class="de">die Isar</span> <span class="tr">Fluss durch München</span>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <span class="cat-icon">🔢</span>
+        <div class="cat-name">Zahlen als Nomen</div>
+        <div class="cat-note">z. B. bei Schulnoten</div>
+        <div class="cat-examples">
+          <span class="de">die Eins</span> <span class="tr">beste Schulnote</span><br>
+          <span class="de">die Zwei</span> <span class="tr">gute Note</span><br>
+          <span class="de">die Zehn</span> <span class="tr">die Zahl 10</span>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <span class="cat-icon">🪑</span>
+        <div class="cat-name">Möbel (viele)</div>
+        <div class="cat-note">Nicht alle, aber viele sind DIE</div>
+        <div class="cat-examples">
+          <span class="de">die Couch</span> <span class="tr">Sofa</span><br>
+          <span class="de">die Küche</span> <span class="tr">Raum zum Kochen</span><br>
+          <span class="de">die Lampe</span> <span class="tr">Licht</span><br>
+          <span class="de">die Wand</span> <span class="tr">Zimmermauer</span><br>
+          <span class="de">die Treppe</span> <span class="tr">Stufen nach oben</span>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <span class="cat-icon">🎓</span>
+        <div class="cat-name">Schulfächer / Wissenschaften</div>
+        <div class="cat-note">enden auf -ik, -ie, -aft</div>
+        <div class="cat-examples">
+          <span class="de">die Chemie</span> <span class="tr">Wissenschaft der Stoffe</span><br>
+          <span class="de">die Geschichte</span> <span class="tr">die Vergangenheit</span><br>
+          <span class="de">die Informatik</span> <span class="tr">Computerwissenschaft</span><br>
+          <span class="de">die Linguistik</span> <span class="tr">Sprachwissenschaft</span>
+        </div>
+      </div>
+
+      <div class="cat-block">
+        <span class="cat-icon">🌍</span>
+        <div class="cat-name">Länder mit Artikel</div>
+        <div class="cat-note">Die wenigen Länder mit Artikel</div>
+        <div class="cat-examples">
+          <span class="de">die Türkei</span> <span class="tr">Land (Ankara)</span><br>
+          <span class="de">die Schweiz</span> <span class="tr">Land (Bern)</span><br>
+          <span class="de">die USA (Pl.)</span> <span class="tr">Land (Washington)</span><br>
+          <span class="de">die Slowakei</span> <span class="tr">Land (Bratislava)</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====== SCHNELLE TRICKS ====== -->
+  <section>
+    <h2 class="section-title">⚡ Schnelle Tricks</h2>
+    <div class="card">
+
+      <details open>
+        <summary>🇪🇸 Endet das spanische Wort auf „-ción/-dad/-ía“ → fast immer DIE</summary>
+        <div class="details-content">
+          <strong>-ción → -tion:</strong> Information, Nation, Situation<br>
+          <strong>-dad → -tät:</strong> Qualität, Universität, Realität<br>
+          <strong>-ía → -ie:</strong> Demokratie, Philosophie, Energie, Familie<br>
+          <strong>-ancia/-encia → -anz/-enz:</strong> Toleranz, Existenz, Eleganz<br><br>
+          <em>Wenn du das Wort aus dem Spanischen erkennst und es so endet, ist es fast immer DIE!</em>
+        </div>
+      </details>
+
+      <details>
+        <summary>🇬🇧 Endet das englische Wort auf „-tion/-ty/-ity/-cy“ → fast immer DIE</summary>
+        <div class="details-content">
+          <strong>-tion (engl.) → -tion (dt.):</strong> Information, Nation<br>
+          <strong>-ty/-ity → -tät:</strong> quality→Qualität, university→Universität<br>
+          <strong>-cy → -schaft oder -keit:</strong> democracy→Demokratie<br>
+          <strong>-ness → -heit/-keit:</strong> freedom→Freiheit, kindness→Freundlichkeit<br>
+        </div>
+      </details>
+
+      <details>
+        <summary>⚠️ Grund-Ausnahmen (nicht DIE!)</summary>
+        <div class="details-content">
+          <strong>der Apfel</strong> (Obst) — maskulin<br>
+          <strong>der Pfirsich</strong> (Obst) — maskulin<br>
+          <strong>das Mädchen</strong> (junges Kind) — neutral (-chen immer neutral)<br>
+          <strong>das Fräulein</strong> (veraltet: junge Frau) — neutral (-lein immer neutral)<br>
+          <strong>der Rhein, der Main</strong> — Flüsse mit maskuliner Tradition<br><br>
+          <em>Merkregel: -chen und -lein sind IMMER DAS, auch bei Personen.</em>
+        </div>
+      </details>
+
+      <details>
+        <summary>🎵 Kleines Merklied (im Cumbia-Rhythmus)</summary>
+        <div class="details-content">
+          <em>Sing das im Kopf:</em><br><br>
+          <strong>„Heit-keit-ung-schaft-tät,<br>
+          tion-anz-enz-ei-in,<br>
+          ik-ur-ie-ive-age,<br>
+          ade — und alles mit DIE! 🎶“</strong><br><br>
+          Wiederhole es 5-mal, dann sitzt es für immer.
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ====== B2-AUSNAHMEN ====== -->
+  <section>
+    <h2 class="section-title">🚨 B2-Ausnahmen — die häufigsten Fallen</h2>
+
+    <!-- Intro -->
+    <div class="card" style="background:linear-gradient(135deg,#fff5f5,#fff0f8); border-left:6px solid #d93025; margin-bottom:16px;">
+      <div class="card-title" style="color:#d93025;">⚠️ Achtung! Diese Endungen sind NICHT immer DIE</div>
+      <p style="color:#444; font-size:0.92em; line-height:1.7;">
+        Auf B2-Niveau ist die größte Gefahr nicht, die DIE-Endungen nicht zu kennen, sondern anzunehmen, dass alles, was feminin <em>klingt</em>, auch feminin ist.
+        Hier sind die Gruppen, die spanischsprachige Lernende am meisten verwirren.
+      </p>
+    </div>
+
+    <!-- Grid der Gruppen -->
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(270px,1fr)); gap:16px; margin-bottom:16px;">
+
+      <!-- DAS -nis -->
+      <div class="card" style="border-top:4px solid #1a73e8; padding:18px;">
+        <div class="card-title" style="color:#1a73e8; font-size:1.1em;">DAS · Endung <span style="color:var(--rosa)">-nis</span></div>
+        <p style="font-size:0.8em; color:#666; margin-bottom:10px;">Viele Lernende sagen hier aus Versehen „die“.</p>
+        <table style="width:100%; font-size:0.84em; border-collapse:collapse;">
+          <tr><td style="font-weight:700;color:#1a73e8;padding:3px 0;">das Ergebnis</td><td style="color:#555;">Resultat</td></tr>
+          <tr style="background:#f0f4ff;"><td style="font-weight:700;color:#1a73e8;padding:3px 4px;">das Ereignis</td><td style="color:#555;">Vorfall / Geschehen</td></tr>
+          <tr><td style="font-weight:700;color:#1a73e8;padding:3px 0;">das Geheimnis</td><td style="color:#555;">etwas Verborgenes</td></tr>
+          <tr style="background:#f0f4ff;"><td style="font-weight:700;color:#1a73e8;padding:3px 4px;">das Verhältnis</td><td style="color:#555;">Beziehung</td></tr>
+          <tr><td style="font-weight:700;color:#1a73e8;padding:3px 0;">das Verständnis</td><td style="color:#555;">Begreifen</td></tr>
+          <tr style="background:#f0f4ff;"><td style="font-weight:700;color:#1a73e8;padding:3px 4px;">das Zeugnis</td><td style="color:#555;">Nachweis / Notenblatt</td></tr>
+          <tr><td style="font-weight:700;color:#1a73e8;padding:3px 0;">das Erlebnis</td><td style="color:#555;">Erfahrung</td></tr>
+          <tr style="background:#f0f4ff;"><td style="font-weight:700;color:#1a73e8;padding:3px 4px;">das Bewusstsein</td><td style="color:#555;">Wahrnehmung</td></tr>
+        </table>
+        <p style="font-size:0.75em; color:var(--rosa); margin-top:8px; font-weight:700;">⚡ Ausnahme der Ausnahme: die Kenntnis (das Wissen) → ist DIE!</p>
+      </div>
+
+      <!-- DAS Anglizismen -ing / -ma -->
+      <div class="card" style="border-top:4px solid #0f9d58; padding:18px;">
+        <div class="card-title" style="color:#0f9d58; font-size:1.1em;">DAS · Anglizismen <span style="color:var(--rosa)">-ing</span> & Griechisch <span style="color:var(--rosa)">-ma</span></div>
+        <p style="font-size:0.8em; color:#666; margin-bottom:10px;">Wörter aus dem Englischen auf -ing und aus dem Griechischen auf -ma sind neutral.</p>
+        <table style="width:100%; font-size:0.84em; border-collapse:collapse;">
+          <tr><td style="font-weight:700;color:#0f9d58;padding:3px 0;">das Training</td><td style="color:#555;">das Üben</td></tr>
+          <tr style="background:#f0fff4;"><td style="font-weight:700;color:#0f9d58;padding:3px 4px;">das Meeting</td><td style="color:#555;">Besprechung</td></tr>
+          <tr><td style="font-weight:700;color:#0f9d58;padding:3px 0;">das Marketing</td><td style="color:#555;">Vermarktung</td></tr>
+          <tr style="background:#f0fff4;"><td style="font-weight:700;color:#0f9d58;padding:3px 4px;">das Coaching</td><td style="color:#555;">Beratung</td></tr>
+          <tr><td style="font-weight:700;color:#0f9d58;padding:3px 0;">das Thema</td><td style="color:#555;">Gegenstand</td></tr>
+          <tr style="background:#f0fff4;"><td style="font-weight:700;color:#0f9d58;padding:3px 4px;">das Klima</td><td style="color:#555;">Langzeitwetter</td></tr>
+          <tr><td style="font-weight:700;color:#0f9d58;padding:3px 0;">das Drama</td><td style="color:#555;">heftiges Geschehen</td></tr>
+          <tr style="background:#f0fff4;"><td style="font-weight:700;color:#0f9d58;padding:3px 4px;">das Schema</td><td style="color:#555;">Muster</td></tr>
+        </table>
+        <p style="font-size:0.75em; color:#888; margin-top:8px; font-style:italic;">Plural von -ma → die Themen, die Klimata/Klimas</p>
+      </div>
+
+      <!-- DAS -ment / -um -->
+      <div class="card" style="border-top:4px solid #f0a500; padding:18px;">
+        <div class="card-title" style="color:#e08c00; font-size:1.1em;">DAS · <span style="color:var(--rosa)">-ment</span> & <span style="color:var(--rosa)">-um</span></div>
+        <p style="font-size:0.8em; color:#666; margin-bottom:10px;">Lateinische Lehnwörter. Fast immer neutral.</p>
+        <table style="width:100%; font-size:0.84em; border-collapse:collapse;">
+          <tr><td style="font-weight:700;color:#e08c00;padding:3px 0;">das Argument</td><td style="color:#555;">Beweisgrund</td></tr>
+          <tr style="background:#fffaf0;"><td style="font-weight:700;color:#e08c00;padding:3px 4px;">das Dokument</td><td style="color:#555;">Schriftstück</td></tr>
+          <tr><td style="font-weight:700;color:#e08c00;padding:3px 0;">das Instrument</td><td style="color:#555;">Werkzeug / Musikgerät</td></tr>
+          <tr style="background:#fffaf0;"><td style="font-weight:700;color:#e08c00;padding:3px 4px;">das Experiment</td><td style="color:#555;">Versuch</td></tr>
+          <tr><td style="font-weight:700;color:#e08c00;padding:3px 0;">das Parlament</td><td style="color:#555;">Volksvertretung</td></tr>
+          <tr style="background:#fffaf0;"><td style="font-weight:700;color:#e08c00;padding:3px 4px;">das Museum</td><td style="color:#555;">Ausstellungshaus</td></tr>
+          <tr><td style="font-weight:700;color:#e08c00;padding:3px 0;">das Zentrum</td><td style="color:#555;">die Mitte</td></tr>
+          <tr style="background:#fffaf0;"><td style="font-weight:700;color:#e08c00;padding:3px 4px;">das Datum</td><td style="color:#555;">Kalendertag</td></tr>
+          <tr><td style="font-weight:700;color:#e08c00;padding:3px 0;">das Studium</td><td style="color:#555;">Studieren an der Uni</td></tr>
+          <tr style="background:#fffaf0;"><td style="font-weight:700;color:#e08c00;padding:3px 4px;">das Album</td><td style="color:#555;">Sammlung</td></tr>
+        </table>
+      </div>
+
+      <!-- DER abstrakte B2-Wörter -->
+      <div class="card" style="border-top:4px solid #d93025; padding:18px;">
+        <div class="card-title" style="color:#d93025; font-size:1.1em;">DER · häufige abstrakte B2-Wörter</div>
+        <p style="font-size:0.8em; color:#666; margin-bottom:10px;">Abstrakte Wörter, die neutral oder feminin wirken, aber maskulin sind.</p>
+        <table style="width:100%; font-size:0.84em; border-collapse:collapse;">
+          <tr><td style="font-weight:700;color:#d93025;padding:3px 0;">der Erfolg</td><td style="color:#555;">Gelingen</td></tr>
+          <tr style="background:#fff5f5;"><td style="font-weight:700;color:#d93025;padding:3px 4px;">der Fortschritt</td><td style="color:#555;">Verbesserung</td></tr>
+          <tr><td style="font-weight:700;color:#d93025;padding:3px 0;">der Unterschied</td><td style="color:#555;">Differenz</td></tr>
+          <tr style="background:#fff5f5;"><td style="font-weight:700;color:#d93025;padding:3px 4px;">der Einfluss</td><td style="color:#555;">Wirkung</td></tr>
+          <tr><td style="font-weight:700;color:#d93025;padding:3px 0;">der Begriff</td><td style="color:#555;">Konzept</td></tr>
+          <tr style="background:#fff5f5;"><td style="font-weight:700;color:#d93025;padding:3px 4px;">der Mut</td><td style="color:#555;">Tapferkeit</td></tr>
+          <tr><td style="font-weight:700;color:#d93025;padding:3px 0;">der Stress</td><td style="color:#555;">Anspannung</td></tr>
+          <tr style="background:#fff5f5;"><td style="font-weight:700;color:#d93025;padding:3px 4px;">der Verlust</td><td style="color:#555;">Gegenteil von Gewinn</td></tr>
+          <tr><td style="font-weight:700;color:#d93025;padding:3px 0;">der Vorteil</td><td style="color:#555;">Nutzen</td></tr>
+          <tr style="background:#fff5f5;"><td style="font-weight:700;color:#d93025;padding:3px 4px;">der Nachteil</td><td style="color:#555;">Schaden</td></tr>
+          <tr><td style="font-weight:700;color:#d93025;padding:3px 0;">der Beweis</td><td style="color:#555;">Nachweis</td></tr>
+          <tr style="background:#fff5f5;"><td style="font-weight:700;color:#d93025;padding:3px 4px;">der Genuss</td><td style="color:#555;">Vergnügen</td></tr>
+        </table>
+      </div>
+
+      <!-- DER Wörter auf -e (N-Deklination) -->
+      <div class="card" style="border-top:4px solid #7b2d8b; padding:18px;">
+        <div class="card-title" style="color:#7b2d8b; font-size:1.1em;">DER · Wörter auf <span style="color:var(--rosa)">-e</span> 😱 (N-Deklination)</div>
+        <p style="font-size:0.8em; color:#666; margin-bottom:10px;">Klassische B2-Falle! Enden auf -e wie DIE, sind aber schwache maskuline Nomen.</p>
+        <table style="width:100%; font-size:0.84em; border-collapse:collapse;">
+          <tr><td style="font-weight:700;color:#7b2d8b;padding:3px 0;">der Name</td><td style="color:#555;">Bezeichnung</td></tr>
+          <tr style="background:#f5f0ff;"><td style="font-weight:700;color:#7b2d8b;padding:3px 4px;">der Käse</td><td style="color:#555;">Milchprodukt</td></tr>
+          <tr><td style="font-weight:700;color:#7b2d8b;padding:3px 0;">der Junge</td><td style="color:#555;">männliches Kind</td></tr>
+          <tr style="background:#f5f0ff;"><td style="font-weight:700;color:#7b2d8b;padding:3px 4px;">der Kollege</td><td style="color:#555;">Arbeitspartner</td></tr>
+          <tr><td style="font-weight:700;color:#7b2d8b;padding:3px 0;">der Gedanke</td><td style="color:#555;">Idee</td></tr>
+          <tr style="background:#f5f0ff;"><td style="font-weight:700;color:#7b2d8b;padding:3px 4px;">der Glaube</td><td style="color:#555;">Überzeugung</td></tr>
+          <tr><td style="font-weight:700;color:#7b2d8b;padding:3px 0;">der Wille</td><td style="color:#555;">Absicht</td></tr>
+          <tr style="background:#f5f0ff;"><td style="font-weight:700;color:#7b2d8b;padding:3px 4px;">der Buchstabe</td><td style="color:#555;">Zeichen im Alphabet</td></tr>
+          <tr><td style="font-weight:700;color:#7b2d8b;padding:3px 0;">der Zeuge</td><td style="color:#555;">wer etwas gesehen hat</td></tr>
+          <tr style="background:#f5f0ff;"><td style="font-weight:700;color:#7b2d8b;padding:3px 4px;">der Friede</td><td style="color:#555;">kein Krieg</td></tr>
+        </table>
+        <p style="font-size:0.75em; color:#7b2d8b; margin-top:8px; font-weight:700;">⚠️ Im Akkusativ/Dativ kommt -n dazu: den Namen, dem Kollegen</p>
+      </div>
+
+      <!-- -tum speziell -->
+      <div class="card" style="border-top:4px solid #1a73e8; padding:18px;">
+        <div class="card-title" style="color:#1a73e8; font-size:1.1em;">DAS vs DER · <span style="color:var(--rosa)">-tum</span> (geteilt!)</div>
+        <p style="font-size:0.8em; color:#666; margin-bottom:10px;">Die Endung -tum teilt sich zwischen DAS und DER. Man muss sie sich merken.</p>
+        <p style="font-size:0.82em; font-weight:700; color:#0f9d58; margin-bottom:4px;">✅ DAS (neutral — die Mehrheit):</p>
+        <table style="width:100%; font-size:0.82em; border-collapse:collapse; margin-bottom:10px;">
+          <tr><td style="font-weight:700;color:#0f9d58;padding:2px 0;">das Wachstum</td><td style="color:#555;">Größerwerden</td></tr>
+          <tr style="background:#f0fff4;"><td style="font-weight:700;color:#0f9d58;padding:2px 4px;">das Eigentum</td><td style="color:#555;">Besitz</td></tr>
+          <tr><td style="font-weight:700;color:#0f9d58;padding:2px 0;">das Altertum</td><td style="color:#555;">Antike</td></tr>
+          <tr style="background:#f0fff4;"><td style="font-weight:700;color:#0f9d58;padding:2px 4px;">das Datum</td><td style="color:#555;">Kalendertag</td></tr>
+        </table>
+        <p style="font-size:0.82em; font-weight:700; color:#d93025; margin-bottom:4px;">❌ DER (maskulin — merken):</p>
+        <table style="width:100%; font-size:0.82em; border-collapse:collapse;">
+          <tr><td style="font-weight:700;color:#d93025;padding:2px 0;">der Irrtum</td><td style="color:#555;">Fehler</td></tr>
+          <tr style="background:#fff5f5;"><td style="font-weight:700;color:#d93025;padding:2px 4px;">der Reichtum</td><td style="color:#555;">Wohlstand</td></tr>
+        </table>
+      </div>
+
+    </div>
+
+    <!-- Regel der Komposita -->
+    <div class="card" style="background:linear-gradient(135deg,#f0f4ff,#f5f0ff); border-left:6px solid #7b2d8b; margin-bottom:16px;">
+      <div class="card-title" style="color:#7b2d8b;">🧩 Goldene B2-Regel: Komposita richten sich nach dem LETZTEN Wort</div>
+      <p style="font-size:0.88em; color:#444; margin-bottom:14px; line-height:1.7;">
+        Wenn im Deutschen zwei Nomen zusammengesetzt werden, bestimmt immer <strong>das letzte Wort</strong> den Artikel. Diese Regel beseitigt sehr viele Zweifel auf B2.
+      </p>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; font-size:0.85em;">
+        <div style="background:white; border-radius:10px; padding:12px;">
+          <p style="font-weight:800; color:var(--rosa); margin-bottom:6px;">DIE + ? = hängt vom Ende ab</p>
+          <p>die Hand + <strong>die Tasche</strong> = <span style="color:var(--rosa); font-weight:700;">die</span> Handtasche 👜</p>
+          <p>die Hand + <strong>das Buch</strong> = <span style="color:#1a73e8; font-weight:700;">das</span> Handbuch 📘</p>
+          <p>die Hand + <strong>der Schuh</strong> = <span style="color:#d93025; font-weight:700;">der</span> Handschuh 🧤</p>
+        </div>
+        <div style="background:white; border-radius:10px; padding:12px;">
+          <p style="font-weight:800; color:var(--morado); margin-bottom:6px;">Weitere Beispiele:</p>
+          <p>die Küche + <strong>das Messer</strong> = <span style="color:#1a73e8; font-weight:700;">das</span> Küchenmesser 🔪</p>
+          <p>die Arbeit + <strong>der Platz</strong> = <span style="color:#d93025; font-weight:700;">der</span> Arbeitsplatz 🏢</p>
+          <p>die Geburt + <strong>die Stadt</strong> = <span style="color:var(--rosa); font-weight:700;">die</span> Geburtsstadt 🏙️</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nominalisierte Infinitive -->
+    <div class="card" style="background:#f5f5f5; border-left:6px solid #0f9d58;">
+      <div class="card-title" style="color:#0f9d58;">📌 Verben als Nomen → immer DAS</div>
+      <p style="font-size:0.88em; color:#444; margin-bottom:12px; line-height:1.7;">
+        Wenn ein Infinitiv zum Nomen wird (großgeschrieben), ist er <strong>immer DAS</strong>. Sehr häufig auf B2 in formellen Texten und Aufsätzen.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:8px; font-size:0.85em;">
+        <span style="background:white; border-radius:8px; padding:6px 12px; font-weight:700; color:#0f9d58;">das Essen 🍽️ <span style="color:#555; font-weight:400;">die Mahlzeit</span></span>
+        <span style="background:white; border-radius:8px; padding:6px 12px; font-weight:700; color:#0f9d58;">das Lesen 📚 <span style="color:#555; font-weight:400;">die Lektüre</span></span>
+        <span style="background:white; border-radius:8px; padding:6px 12px; font-weight:700; color:#0f9d58;">das Schreiben ✍️ <span style="color:#555; font-weight:400;">das Verfassen</span></span>
+        <span style="background:white; border-radius:8px; padding:6px 12px; font-weight:700; color:#0f9d58;">das Lernen 🎓 <span style="color:#555; font-weight:400;">das Studieren</span></span>
+        <span style="background:white; border-radius:8px; padding:6px 12px; font-weight:700; color:#0f9d58;">das Leben 💚 <span style="color:#555; font-weight:400;">das Dasein</span></span>
+        <span style="background:white; border-radius:8px; padding:6px 12px; font-weight:700; color:#0f9d58;">das Fahren 🚗 <span style="color:#555; font-weight:400;">die Fahrt</span></span>
+      </div>
+      <p style="font-size:0.78em; color:#888; margin-top:10px; font-style:italic;">Beispiel B2: „Das Lesen von Büchern ist wichtig.“ — Bücher zu lesen ist wichtig.</p>
+    </div>
+
+  </section>
+
+  <!-- SCHNELLÜBERSICHT -->
+  <section>
+    <h2 class="section-title">🗂️ Schnellübersicht</h2>
+    <div class="card">
+      <p style="margin-bottom:12px; font-weight:700; color:var(--morado)">Alle DIE-Endungen auf einen Blick:</p>
+      <div class="quick-ref">
+        <span class="qr-pill">-heit</span>
+        <span class="qr-pill">-keit</span>
+        <span class="qr-pill">-ung</span>
+        <span class="qr-pill">-schaft</span>
+        <span class="qr-pill">-tät</span>
+        <span class="qr-pill">-tion</span>
+        <span class="qr-pill">-sion</span>
+        <span class="qr-pill">-anz</span>
+        <span class="qr-pill">-enz</span>
+        <span class="qr-pill">-ei</span>
+        <span class="qr-pill">-in (Personen)</span>
+        <span class="qr-pill">-ik</span>
+        <span class="qr-pill">-ur</span>
+        <span class="qr-pill">-ie</span>
+        <span class="qr-pill">-ive</span>
+        <span class="qr-pill">-age</span>
+        <span class="qr-pill">-ade</span>
+        <span class="qr-pill">-isse</span>
+        <span class="qr-pill">-ine</span>
+      </div>
+    </div>
+  </section>
+
+  <div style="text-align:center; color:rgba(255,255,255,0.4); font-size:0.8em; padding: 20px 0 30px;">
+    🗡️ Haken-Suit-Technik — der Artikel DIE im Deutschen
+  </div>
+
+</div>
+</body>
+</html>
